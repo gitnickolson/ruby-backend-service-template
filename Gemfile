@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
-gem 'rubocop'
 gem 'puma'
+gem 'rack'
+gem 'rubocop'
+gem 'sinatra'
 gem 'zeitwerk'
