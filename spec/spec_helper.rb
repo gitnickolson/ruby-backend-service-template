@@ -2,9 +2,16 @@
 
 ENV['ENV'] = 'test'
 
-require './lib/config/initialize'
-require 'rspec'
 require 'database_cleaner-sequel'
+require 'rspec'
+require 'simplecov'
+require './lib/config/initialize'
+
+SimpleCov.minimum_coverage 100
+SimpleCov.start do
+  add_filter '/spec/'
+  enable_coverage :branch
+end
 
 RSpec.configure do |config|
   config.color = true

@@ -29,7 +29,7 @@ RSpec.describe Tasks::Helpers::DatabaseManager do
 
     context 'when the database already exists' do
       before do
-        allow(described_class).to receive(:database_exists?).and_return(true)
+        allow(mock_db).to receive(:execute).with("SELECT 1 from pg_database WHERE datname='#{db_name}'").and_return(1)
       end
 
       it 'sends a corresponding warning' do

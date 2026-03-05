@@ -11,6 +11,7 @@ gem 'rubocop'
 gem 'rubocop-rake'
 gem 'rubocop-sequel'
 gem 'sequel'
+gem 'simplecov'
 gem 'sinatra'
 gem 'zeitwerk'
 

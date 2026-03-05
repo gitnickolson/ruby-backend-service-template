@@ -55,8 +55,7 @@ module Tasks
         end
 
         def database_exists?(database)
-          cmd = "SELECT 1 from pg_database WHERE datname='#{db_name}'"
-          database.execute(cmd) == 1
+          database.execute("SELECT 1 from pg_database WHERE datname='#{db_name}'") == 1
         end
 
         def db_name

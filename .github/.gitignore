@@ -1,6 +1,7 @@
 .idea
 .idea/encodings.xml
 *.db
+coverage
 
 ### Environment ###
 .env*
