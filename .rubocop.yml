@@ -1,5 +1,6 @@
 AllCops:
   NewCops: enable
+  SuggestExtensions: false
   TargetRubyVersion: 4.0.1
 Metrics/ClassLength:
   Enabled: false
@@ -7,3 +8,13 @@ Metrics/AbcSize:
   Enabled: false
 Style/Documentation:
   Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+plugins:
+  - rubocop-rspec
