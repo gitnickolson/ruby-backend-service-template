@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require 'sequel'
 require 'dotenv'
+require 'model_schema'
+require 'sequel'
 require 'zeitwerk'
 
 DATABASE_SETUP_STRING = 'db'
@@ -25,4 +26,5 @@ puts "Loading env from: #{env_path}"
 
 return if environment == DATABASE_SETUP_STRING
 
+Sequel::Model.plugin(ModelSchema::Plugin)
 DB = Sequel.connect(EnvironmentFetcher.postgres_url)

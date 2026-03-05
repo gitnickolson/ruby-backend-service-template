@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'dotenv'
+gem 'model_schema'
 gem 'pg'
 gem 'puma'
 gem 'rack'
