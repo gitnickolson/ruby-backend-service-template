@@ -39,14 +39,15 @@ module Tasks
           require './lib/config/initialize'
           Sequel.extension :migration
 
-          directory = 'db/migrations'
+          directory = 'migrations'
 
           return warn 'No migration files found' unless Dir.exist?(directory) && !Dir.empty?(directory)
 
           puts "Migrating to #{target ? "version #{target}" : 'latest'}"
-          Sequel::Migrator.run(DB, directory, target:)
-
-          puts "Database #{db_name} successfully migrated"
+          with_postgres do |db|
+            Sequel::Migrator.run(db, directory, target:)
+            puts "Database #{db_name} successfully migrated"
+          end
         end
 
         def with_postgres(&)

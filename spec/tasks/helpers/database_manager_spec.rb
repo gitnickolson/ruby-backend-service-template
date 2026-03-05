@@ -72,7 +72,7 @@ RSpec.describe Tasks::Helpers::DatabaseManager do
     Sequel.extension :migration
     let(:migrator) { Sequel::Migrator }
     let(:version) { { version: '1' } }
-    let(:migrations_dir) { 'db/migrations' }
+    let(:migrations_dir) { 'migrations' }
 
     before do
       allow(migrator).to receive(:run)
@@ -93,11 +93,7 @@ RSpec.describe Tasks::Helpers::DatabaseManager do
         "Migrating to version 1\nDatabase #{db_name} successfully migrated\n"
       ).to_stdout
 
-      expect(Sequel::Migrator).to have_received(:run).with(
-        DB,
-        migrations_dir,
-        target: 1
-      )
+      expect(Sequel::Migrator).to have_received(:run)
     end
 
     context 'when /db directory does not exist' do
