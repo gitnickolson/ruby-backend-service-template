@@ -51,7 +51,7 @@ RSpec.describe Tasks::Helpers::DatabaseManager do
           "Database #{db_name} successfully dropped\n"
         ).to_stdout
 
-        expect(mock_db).to have_received(:execute).with("DROP DATABASE \"#{db_name}\"")
+        expect(mock_db).to have_received(:execute).with("DROP DATABASE \"#{db_name}\" WITH (FORCE)")
       end
     end
 

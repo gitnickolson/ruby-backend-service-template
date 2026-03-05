@@ -11,16 +11,17 @@ loader = Zeitwerk::Loader.new
 loader.push_dir(File.expand_path('..', __dir__))
 loader.setup
 
+project_root = File.expand_path('../../', __dir__)
+
 environment = ENV['ENV']&.downcase
 if environment == 'production'
-  Dotenv.load
+  env_path = File.join(project_root, '.env')
 elsif DEV_STRINGS.include?(environment) || environment.nil?
-  project_root = File.expand_path('../../', __dir__)
   env_path = File.join(project_root, '.env.development')
-
-  puts "Loading env from: #{env_path}"
-  Dotenv.load(env_path)
 end
+
+Dotenv.load(env_path)
+puts "Loading env from: #{env_path}"
 
 return if environment == DATABASE_SETUP_STRING
 

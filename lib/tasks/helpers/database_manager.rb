@@ -20,7 +20,7 @@ module Tasks
         def drop
           with_postgres do |db|
             if database_exists?(db)
-              db.execute("DROP DATABASE \"#{db_name}\"")
+              db.execute("DROP DATABASE \"#{db_name}\" WITH (FORCE)")
               puts "Database #{db_name} successfully dropped"
             else
               warn "Database #{db_name} not found"
