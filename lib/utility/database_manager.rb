@@ -50,12 +50,12 @@ module Utility
       end
 
       def with_postgres_system_db(&)
-        root_url = EnvironmentFetcher.postgres_url.gsub(%r{/[^/]+$}, '/postgres')
+        root_url = Utility::EnvironmentFetcher.postgres_url.gsub(%r{/[^/]+$}, '/postgres')
         Sequel.connect(root_url, &)
       end
 
       def with_postgres_app_db(&)
-        Sequel.connect(EnvironmentFetcher.postgres_url, &)
+        Sequel.connect(Utility::EnvironmentFetcher.postgres_url, &)
       end
 
       def database_exists?(database)
@@ -63,7 +63,7 @@ module Utility
       end
 
       def db_name
-        EnvironmentFetcher.database_name
+        Utility::EnvironmentFetcher.database_name
       end
     end
   end

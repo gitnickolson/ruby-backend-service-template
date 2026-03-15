@@ -29,7 +29,7 @@ RSpec.describe Repositories::UserRepository do
       described_class.create(user_data:)
 
       expect(Utility::PasswordEncrypter).to have_received(:call).with(password:)
-      expect(BCrypt::Password.new(Models::User.first.password_hash)).to eq("#{password}#{EnvironmentFetcher.pepper}")
+      expect(BCrypt::Password.new(Models::User.first.password_hash)).to eq("#{password}#{Utility::EnvironmentFetcher.pepper}")
     end
   end
 end

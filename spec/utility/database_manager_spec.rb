@@ -6,7 +6,7 @@ RSpec.describe Utility::DatabaseManager do
   let(:mock_db) { double(Sequel::Database).as_null_object } # rubocop:disable RSpec/VerifiedDoubles
 
   before do
-    allow(EnvironmentFetcher).to receive_messages(
+    allow(Utility::EnvironmentFetcher).to receive_messages(
       database_url: test_db_url
     )
     allow(Sequel).to receive(:connect).and_yield(mock_db)

@@ -27,4 +27,4 @@ puts "Loading env from: #{env_path}"
 return if environment == DATABASE_SETUP_STRING
 
 Sequel::Model.plugin(ModelSchema::Plugin)
-DB = Sequel.connect(EnvironmentFetcher.postgres_url)
+DB = Sequel.connect(Utility::EnvironmentFetcher.postgres_url)
