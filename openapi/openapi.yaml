@@ -1,0 +1,66 @@
+---
+openapi: 3.1.2
+info:
+  title: Guess Anything
+servers:
+  - url: TBI
+    description: Production server
+tags:
+  - name: Users
+    description: User related routes
+paths:
+  /users:
+    post:
+      operationId: guess-anything.users.post
+      description: Create a user
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: object 
+                  required: 
+                    - username 
+                    - mail_address 
+                    - password
+                  properties: 
+                    username: 
+                      type: string 
+                    mail_address: 
+                      type: string  
+                    password: 
+                      type: string
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object 
+                    required: 
+                      - id 
+                      - username
+                      - mail_address
+                      - created_at
+                    properties: 
+                      id:
+                        type: string
+                      username:
+                        type: string
+                      mail_address:
+                        type: string
+                      created_at:
+                        type: string
+        401:
+          description: Unauthorized
