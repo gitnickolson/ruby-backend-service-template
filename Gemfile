@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 
+gem 'bcrypt'
 gem 'dotenv'
 gem 'model_schema'
 gem 'pg'
