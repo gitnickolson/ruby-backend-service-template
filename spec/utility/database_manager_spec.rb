@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Tasks::Helpers::DatabaseManager do
+RSpec.describe Utility::DatabaseManager do
   let(:db_name) { 'guess-anything-db' }
   let(:test_db_url) { "postgres://localhost/#{db_name}" }
   let(:mock_db) { double(Sequel::Database).as_null_object } # rubocop:disable RSpec/VerifiedDoubles
