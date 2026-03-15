@@ -5,16 +5,16 @@ require 'rake'
 namespace :db do
   desc 'Create database'
   task :create do
-    Tasks::Helpers::DatabaseManager.create
+    Utility::DatabaseManager.create
   end
 
   desc 'Drop database'
   task :drop do
-    Tasks::Helpers::DatabaseManager.drop
+    Utility::DatabaseManager.drop
   end
 
   desc 'Run database migrations'
   task :migrate, %i[version] do |_, args|
-    Tasks::Helpers::DatabaseManager.migrate(args)
+    Utility::DatabaseManager.migrate(args)
   end
 end

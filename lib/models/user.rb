@@ -3,12 +3,12 @@
 require 'sequel/model'
 
 module Models
-  class User < Sequel::Model
+  class User < Sequel::Model(:users)
     model_schema do
       primary_key :id
-      String :display_name, null: false
+      String :username, null: false
       String :mail_address, null: false
-      String :encrypted_password, null: false
+      String :password_hash, null: false
       DateTime :created_at, null: false, default: Sequel::CURRENT_TIMESTAMP
 
       index :mail_address, name: :unique_mail_addresses, unique: true

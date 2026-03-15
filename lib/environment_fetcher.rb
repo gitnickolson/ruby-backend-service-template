@@ -11,5 +11,9 @@ class EnvironmentFetcher
     def database_name
       ENV.fetch('POSTGRES_DB')
     end
+
+    def pepper
+      ENV.fetch('PEPPER')
+    end
   end
 end

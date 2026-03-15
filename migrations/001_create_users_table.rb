@@ -4,9 +4,9 @@ Sequel.migration do
   change do
     create_table(:users) do
       primary_key :id
-      String :display_name, null: false
+      String :username, null: false
       String :mail_address, null: false
-      String :encrypted_password, null: false
+      String :password_hash, null: false
       DateTime :created_at, null: false, default: Sequel::CURRENT_TIMESTAMP
     end
 
