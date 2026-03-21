@@ -7,7 +7,7 @@ module Repositories
         password_hash = Utility::PasswordEncrypter.call(password: user_data[:password])
 
         Models::User.create(username: user_data[:username],
-                            mail_address: user_data[:mailAddress],
+                            mail_address: user_data[:mail_address],
                             password_hash:)
       end
     end

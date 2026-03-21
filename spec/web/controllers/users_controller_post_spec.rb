@@ -50,15 +50,51 @@ RSpec.describe Web::Controllers::UsersController do
                                                      }))
     end
 
-    context 'with missing required parameters' do
-      let(:body) do
-        JSON.generate({
-                        data: {
-                          username:,
-                          mailAddress: mail_address
-                        }
-                      })
+    context 'when email does not match email format' do
+      let(:mail_address) { 'foobarbaz' }
+
+      it 'returns 400' do
+        post('/users', body)
+
+        expect(last_response.status).to eq(400)
       end
+    end
+
+    context 'when username is too long' do
+      let(:username) { '123456789_123456789_1' }
+
+      it 'returns 400' do
+        post('/users', body)
+
+        expect(last_response.status).to eq(400)
+      end
+    end
+
+    context 'when email is too long' do
+      let(:mail_address) do
+        "this_is_a_very_long_email_this_is_a_very_long_email_this_is_a_very_long_email\n" \
+          '@very_long_email_very_long_email.com'
+      end
+
+      it 'returns 400' do
+        post('/users', body)
+
+        expect(last_response.status).to eq(400)
+      end
+    end
+
+    context 'when password is too long' do
+      let(:password) { 'thisisaverylongpassworditisinfacttoolong' }
+
+      it 'returns 400' do
+        post('/users', body)
+
+        expect(last_response.status).to eq(400)
+      end
+    end
+
+    context 'when username does not match required format' do
+      let(:username) { '={}aqwe;\"' }
 
       it 'returns 400' do
         post('/users', body)

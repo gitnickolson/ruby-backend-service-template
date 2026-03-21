@@ -32,10 +32,15 @@ paths:
                   properties: 
                     username: 
                       type: string 
+                      maximum: 20
                     mailAddress: 
-                      type: string  
+                      type: string
+                      format: email  
+                      maximum: 100
                     password: 
                       type: string
+                      format: password
+                      maximum: 30
       responses:
         201:
           description: Created
@@ -62,5 +67,7 @@ paths:
                         type: string
                       createdAt:
                         type: string
+        400:
+          description: Bad Request
         401:
           description: Unauthorized
