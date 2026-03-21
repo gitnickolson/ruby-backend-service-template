@@ -70,6 +70,19 @@ RSpec.describe Web::Controllers::UsersController do
       end
     end
 
+    context 'when email is too long' do
+      let(:mail_address) do
+        "this_is_a_very_long_email_this_is_a_very_long_email_this_is_a_very_long_email\n" \
+          '@very_long_email_very_long_email.com'
+      end
+
+      it 'returns 400' do
+        post('/users', body)
+
+        expect(last_response.status).to eq(400)
+      end
+    end
+
     context 'when password is too long' do
       let(:password) { 'thisisaverylongpassworditisinfacttoolong' }
 
