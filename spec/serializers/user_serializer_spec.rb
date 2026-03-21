@@ -9,8 +9,8 @@ RSpec.describe Serializers::UserSerializer do
     expect(result).to eq({
                            id: user.id.to_s,
                            username: user.username,
-                           mail_address: user.mail_address,
-                           created_at: user.created_at.iso8601
+                           mailAddress: user.mail_address,
+                           createdAt: user.created_at.iso8601
                          })
   end
 end

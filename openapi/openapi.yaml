@@ -27,12 +27,12 @@ paths:
                   type: object 
                   required: 
                     - username 
-                    - mail_address 
+                    - mailAddress 
                     - password
                   properties: 
                     username: 
                       type: string 
-                    mail_address: 
+                    mailAddress: 
                       type: string  
                     password: 
                       type: string
@@ -51,16 +51,16 @@ paths:
                     required: 
                       - id 
                       - username
-                      - mail_address
-                      - created_at
+                      - mailAddress
+                      - createdAt
                     properties: 
                       id:
                         type: string
                       username:
                         type: string
-                      mail_address:
+                      mailAddress:
                         type: string
-                      created_at:
+                      createdAt:
                         type: string
         401:
           description: Unauthorized

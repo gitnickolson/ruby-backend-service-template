@@ -7,7 +7,7 @@ RSpec.describe Repositories::UserRepository do
     let(:username) { 'nickolson' }
     let(:mail_address) { 'nickolson@example.com' }
     let(:password) { 'test_password' }
-    let(:user_data) { { username:, mail_address:, password: } }
+    let(:user_data) { { username:, mailAddress: mail_address, password: } }
 
     before do
       allow(Utility::PasswordEncrypter).to receive(:call).and_call_original

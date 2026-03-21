@@ -10,7 +10,7 @@ RSpec.describe Web::Controllers::UsersController do
       JSON.generate({
                       data: {
                         username:,
-                        mail_address:,
+                        mailAddress: mail_address,
                         password:
                       }
                     })
@@ -44,8 +44,8 @@ RSpec.describe Web::Controllers::UsersController do
                                                        data: {
                                                          id: user.id.to_s,
                                                          username:,
-                                                         mail_address:,
-                                                         created_at: user.created_at.iso8601
+                                                         mailAddress: mail_address,
+                                                         createdAt: user.created_at.iso8601
                                                        }
                                                      }))
     end
@@ -55,7 +55,7 @@ RSpec.describe Web::Controllers::UsersController do
         JSON.generate({
                         data: {
                           username:,
-                          mail_address:
+                          mailAddress: mail_address
                         }
                       })
       end
