@@ -10,8 +10,11 @@ module Web
       end
 
       post '/' do
-        created_user = Repositories::UserRepository.create(user_data: payload)
-        serialized_user = Serializers::UserSerializer.call(user: created_user)
+        user_data = Serializers::UserSerializer.deserialize(payload:)
+        halt 400 unless Validation::UserDataValidator.valid?(user_data:)
+
+        created_user = Repositories::UserRepository.create(user_data:)
+        serialized_user = Serializers::UserSerializer.serialize(user: created_user)
 
         Utility::ResponseBuilder.json_response(payload: serialized_user, status: 201)
       end
