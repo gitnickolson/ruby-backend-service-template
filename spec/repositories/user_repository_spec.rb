@@ -7,11 +7,7 @@ RSpec.describe Repositories::UserRepository do
     let(:username) { 'nickolson' }
     let(:mail_address) { 'nickolson@example.com' }
     let(:password) { 'test_password' }
-    let(:password_hash) do
-      hashed_password = described_class.call(password:)
-      BCrypt::Password.new(hashed_password)
-    end
-    let(:user_data) { { username:, mail_address:, password: } }
+    let(:user_data) { { username:, mailAddress: mail_address, password: } }
 
     before do
       allow(Utility::PasswordEncrypter).to receive(:call).and_call_original
@@ -29,7 +25,7 @@ RSpec.describe Repositories::UserRepository do
       described_class.create(user_data:)
 
       expect(Utility::PasswordEncrypter).to have_received(:call).with(password:)
-      expect(BCrypt::Password.new(Models::User.first.password_hash)).to eq("#{password}#{EnvironmentFetcher.pepper}")
+      expect(BCrypt::Password.new(Models::User.first.password_hash)).to eq("#{password}#{Utility::EnvironmentFetcher.pepper}")
     end
   end
 end

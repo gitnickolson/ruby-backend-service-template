@@ -2,11 +2,9 @@
 
 require 'dotenv'
 require 'model_schema'
+require 'openapi_first'
 require 'sequel'
 require 'zeitwerk'
-
-DATABASE_SETUP_STRING = 'db'
-DEV_STRINGS = (%w[dev development test] + [DATABASE_SETUP_STRING]).freeze
 
 loader = Zeitwerk::Loader.new
 loader.push_dir(File.expand_path('..', __dir__))
@@ -17,14 +15,16 @@ project_root = File.expand_path('../../', __dir__)
 environment = ENV['ENV']&.downcase
 if environment == 'production'
   env_path = File.join(project_root, '.env')
-elsif DEV_STRINGS.include?(environment) || environment.nil?
+elsif Utility::EnvironmentFetcher.dev_env_strings.include?(environment) || environment.nil?
   env_path = File.join(project_root, '.env.development')
 end
 
 Dotenv.load(env_path)
 puts "Loading env from: #{env_path}"
 
-return if environment == DATABASE_SETUP_STRING
+return if environment == Utility::EnvironmentFetcher.database_setup_env_string
+
+OpenapiFirst.register('openapi/openapi.yaml')
 
 Sequel::Model.plugin(ModelSchema::Plugin)
-DB = Sequel.connect(EnvironmentFetcher.postgres_url)
+DB = Sequel.connect(Utility::EnvironmentFetcher.postgres_url)

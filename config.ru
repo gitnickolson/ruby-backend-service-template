@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-map '/' do
-  run ->(_env) { [200, { 'Content-Type' => 'text/plain' }, ['Wowei']] }
-end
+require './lib/config/initialize'
+require './lib/web/router'
 
 map '/healthz' do
-  run ->(_env) { [200, { 'Content-Type' => 'text/plain' }, ['OK diggi']] }
+  run ->(_env) { [200, { 'Content-Type' => 'text/plain' }, ['OK']] }
 end
+
+run Web::Router.new
