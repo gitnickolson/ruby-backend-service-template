@@ -7,7 +7,7 @@ finished yet, but you can already use it and it should be functional.
 The service currently supports a simple `User` entity that can have a hashed password (with salt and pepper as well).
 I will probably add some more security measurements to this template in the future.
 
-## Basic Setup
+## Basic setup
 
 ### Set up a docker container
 ```
