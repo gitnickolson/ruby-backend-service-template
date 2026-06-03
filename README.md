@@ -34,7 +34,7 @@ Rubocop:
 ```
 bundle exec rubocop 
 
-# or, if you want it to autocorrect (when possible):
+# or, if you want it to autocorrect (when possible)
 bundle exec rubocop -a
 ```
 Run with the -A flag if you want it to autocorrect things if possible
