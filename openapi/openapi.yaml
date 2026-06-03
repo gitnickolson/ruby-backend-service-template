@@ -1,7 +1,7 @@
 ---
 openapi: 3.1.2
 info:
-  title: Guess Anything
+  title: Service Name
 servers:
   - url: TBI
     description: Production server
@@ -11,7 +11,7 @@ tags:
 paths:
   /users:
     post:
-      operationId: guess-anything.users.post
+      operationId: service-name.users.post
       description: Create a user
       tags: [Users]
       requestBody:

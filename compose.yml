@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:18
-    container_name: guess-anything-db
+    container_name: service-name-db
     restart: unless-stopped
     env_file:
       - .env.development
