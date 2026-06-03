@@ -9,34 +9,47 @@ I will probably add some more security measurements to this template in the futu
 
 ## Basic Setup
 
-Set up database
+### Set up a docker container
+```
+docker compose up -d
+```
+
+### Set up database
+Make sure that your `.env` files are correctly configured for what you need and want.
+
 ```
 # db creation
 ENV=db bundle exec rake db:create 
+
 # db migration
 ENV=db bundle exec rake db:migrate
+
 # or both
 ENV=db bundle exec rake db:create db:migrate
 ```
 (It can be dropped by running db:drop if you need to clean something up)
 
-Run rubocop
+### Run rubocop and tests
+Rubocop:
 ```
+bundle exec rubocop 
+
+# or, if you want it to autocorrect (when possible):
 bundle exec rubocop -a
 ```
 Run with the -A flag if you want it to autocorrect things if possible
 
-Run all tests
+Tests:
 ```
 bundle exec rspec
 ```
 
-Run rubocop and all tests
+Both:
 ```
 bundle exec rake
 ```
 
-Start local webserver
+### Start local webserver
 ```
 bundle exec puma -p 8000
 ```
