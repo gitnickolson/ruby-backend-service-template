@@ -17,14 +17,13 @@ if environment == 'production'
   env_path = File.join(project_root, '.env')
 elsif Utility::EnvironmentFetcher.dev_env_strings.include?(environment) || environment.nil?
   env_path = File.join(project_root, '.env.development')
+  OpenapiFirst.register('openapi/openapi.yml')
 end
 
 Dotenv.load(env_path)
 puts "Loading env from: #{env_path}"
 
 return if environment == Utility::EnvironmentFetcher.database_setup_env_string
-
-OpenapiFirst.register('openapi/openapi.yml')
 
 Sequel::Model.plugin(ModelSchema::Plugin)
 DB = Sequel.connect(Utility::EnvironmentFetcher.postgres_url)
