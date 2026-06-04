@@ -3,12 +3,34 @@
 require 'bcrypt'
 
 RSpec.describe Repositories::UserRepository do
-  let(:username) { 'nickolson' }
-  let(:mail_address) { 'nickolson@example.com' }
-  let(:password) { 'test_password' }
-  let(:user_data) { { username:, mail_address:, password: } }
+  describe '.all' do
+    let(:username) { 'nickolson' }
+    let(:mail_address) { 'nickolson@example.com' }
+
+    let(:other_username) { 'jackson' }
+    let(:other_mail_address) { 'jackson@example.com' }
+
+    let!(:user) do
+      create(:user, username:, mail_address:)
+    end
+
+    let!(:other_user) do
+      create(:user, username: other_username, mail_address: other_mail_address)
+    end
+
+    it 'returns all users' do
+      result = described_class.all
+
+      expect(result).to eq([user, other_user])
+    end
+  end
 
   describe '.create' do
+    let(:username) { 'nickolson' }
+    let(:mail_address) { 'nickolson@example.com' }
+    let(:password) { 'test_password' }
+    let(:user_data) { { username:, mail_address:, password: } }
+
     before do
       allow(Utility::PasswordEncrypter).to receive(:call).and_call_original
     end
@@ -30,8 +52,11 @@ RSpec.describe Repositories::UserRepository do
   end
 
   describe '.user_exists?' do
+    let(:username) { 'nickolson' }
+    let(:mail_address) { 'nickolson@example.com' }
+
     before do
-      create(:user, username:, mail_address:, password_hash: password)
+      create(:user, username:, mail_address:)
     end
 
     it 'returns true if a user with the passed email exists' do
