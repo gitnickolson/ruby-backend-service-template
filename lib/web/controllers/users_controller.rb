@@ -20,6 +20,13 @@ module Web
         Utility::ResponseBuilder.json_response(payload: serialized_user, status: 201)
       end
 
+      get '/' do
+        users = Repositories::UserRepository.all
+        serialized_users = Serializers::UserSerializer.serialize_many(users:)
+
+        Utility::ResponseBuilder.json_response(payload: serialized_users, status: 200)
+      end
+
       private
 
       def payload
