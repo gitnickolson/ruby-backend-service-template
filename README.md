@@ -53,9 +53,10 @@ bundle exec rake
 ```
 bundle exec puma -p 8000
 ```
+After starting, you can check if the service is up and running by calling the `/healthz` route (just add "/healthz" to the end of the URL).
 
 ## Steps for adding a new entity
-1. Add a migration file with the table structure to `./lib/migrations`
+1. Add a migration file with the table structure to `./lib/migrations` (Make sure to migrate your database afterwards)
 2. Add a new matching model for that table to `./lib/models`
 3. Add a new controller (or expand an already existing one if it matches the purpose) to `./lib/web/controllers`
 4. Make the router in `./lib/web/router.rb` support newly added controllers
