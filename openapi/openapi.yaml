@@ -24,20 +24,20 @@ paths:
                 - data
               properties:
                 data:
-                  type: object 
-                  required: 
-                    - username 
-                    - mailAddress 
+                  type: object
+                  required:
+                    - username
+                    - mailAddress
                     - password
-                  properties: 
-                    username: 
-                      type: string 
-                      maximum: 20
-                    mailAddress: 
+                  properties:
+                    username:
                       type: string
-                      format: email  
+                      maximum: 20
+                    mailAddress:
+                      type: string
+                      format: email
                       maximum: 100
-                    password: 
+                    password:
                       type: string
                       format: password
                       maximum: 30
@@ -52,13 +52,13 @@ paths:
                   - data
                 properties:
                   data:
-                    type: object 
-                    required: 
-                      - id 
+                    type: object
+                    required:
+                      - id
                       - username
                       - mailAddress
                       - createdAt
-                    properties: 
+                    properties:
                       id:
                         type: string
                       username:
@@ -71,3 +71,5 @@ paths:
           description: Bad Request
         401:
           description: Unauthorized
+        409:
+          description: Conflict

@@ -10,6 +10,10 @@ module Repositories
                             mail_address: user_data[:mail_address],
                             password_hash:)
       end
+
+      def user_exists?(mail_address:)
+        Models::User.where(mail_address:).any?
+      end
     end
   end
 end
