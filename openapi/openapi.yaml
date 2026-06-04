@@ -3,7 +3,7 @@ openapi: 3.1.2
 info:
   title: Service Name
 servers:
-  - url: TBI
+  - url: https://api.example.com
     description: Production server
 tags:
   - name: Users
@@ -11,9 +11,11 @@ tags:
 paths:
   /users:
     post:
-      operationId: service-name.users.post
+      operationId: createUser
+      summary: Create a user
       description: Create a user
-      tags: [Users]
+      tags:
+        - Users
       requestBody:
         required: true
         content:
@@ -32,17 +34,17 @@ paths:
                   properties:
                     username:
                       type: string
-                      maximum: 20
+                      maxLength: 20
                     mailAddress:
                       type: string
                       format: email
-                      maximum: 100
+                      maxLength: 100
                     password:
                       type: string
                       format: password
-                      maximum: 30
+                      maxLength: 30
       responses:
-        201:
+        "201":
           description: Created
           content:
             application/json:
@@ -65,11 +67,51 @@ paths:
                         type: string
                       mailAddress:
                         type: string
+                        format: email
                       createdAt:
                         type: string
-        400:
+                        format: date-time
+        "400":
           description: Bad Request
-        401:
+        "401":
           description: Unauthorized
-        409:
+        "409":
           description: Conflict
+    get:
+      operationId: listUsers
+      summary: List all users
+      description: Retrieve a paginated list of all users in the system.
+      tags:
+        - Users
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - username
+                        - mailAddress
+                        - createdAt
+                      properties:
+                        id:
+                          type: string
+                        username:
+                          type: string
+                          maxLength: 20
+                        mailAddress:
+                          type: string
+                          format: email
+                          maxLength: 100
+                        createdAt:
+                          type: string
+                          format: date-time
