@@ -3,6 +3,10 @@
 module Repositories
   class UserRepository
     class << self
+      def all
+        Models::User.all
+      end
+
       def create(user_data:)
         password_hash = Utility::PasswordEncrypter.call(password: user_data[:password])
 
