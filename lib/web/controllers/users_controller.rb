@@ -12,6 +12,7 @@ module Web
       post '/' do
         user_data = Serializers::UserSerializer.deserialize(payload:)
         halt 400 unless Validation::UserDataValidator.valid?(user_data:)
+        halt 409 if Repositories::UserRepository.user_exists?(mail_address: user_data[:mail_address])
 
         created_user = Repositories::UserRepository.create(user_data:)
         serialized_user = Serializers::UserSerializer.serialize(user: created_user)

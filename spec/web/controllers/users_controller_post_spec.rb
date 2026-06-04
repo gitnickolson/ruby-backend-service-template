@@ -50,6 +50,18 @@ RSpec.describe Web::Controllers::UsersController do
                                                      }))
     end
 
+    context 'when user with same email already exists' do
+      before do
+        create(:user, username:, mail_address:, password_hash: password)
+      end
+
+      it 'returns 409' do
+        post('/users', body)
+
+        expect(last_response.status).to eq(409)
+      end
+    end
+
     context 'when email does not match email format' do
       let(:mail_address) { 'foobarbaz' }
 
