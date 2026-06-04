@@ -1,0 +1,49 @@
+User:
+  type: object
+  required:
+    - id
+    - username
+    - mailAddress
+    - createdAt
+  properties:
+    id:
+      type: string
+    username:
+      type: string
+      maxLength: 20
+    mailAddress:
+      type: string
+      format: email
+      maxLength: 100
+    createdAt:
+      type: string
+      format: date-time
+
+PostUser:
+  type: object
+  required:
+    - username
+    - mailAddress
+    - password
+  properties:
+    username:
+      type: string
+      maxLength: 20
+    mailAddress:
+      type: string
+      format: email
+      maxLength: 100
+    password:
+      type: string
+      format: password
+      maxLength: 30
+
+IndexUser:
+  type: object
+  required:
+    - data
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/User'
