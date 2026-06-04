@@ -12,7 +12,6 @@ module Models
       DateTime :created_at, null: false, default: Sequel::CURRENT_TIMESTAMP
 
       index :mail_address, name: :unique_mail_addresses, unique: true
-      index :mail_address
     end
   end
 end
