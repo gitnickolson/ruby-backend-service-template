@@ -1,0 +1,13 @@
+openapi: 3.1.2
+info:
+  title: Service Name
+servers:
+  - url: https://api.example.com
+    description: Production server
+
+paths:
+  /users:
+    get:
+      $ref: ./entities/user/index.yml
+    post:
+      $ref: ./entities/user/post.yml

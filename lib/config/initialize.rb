@@ -24,7 +24,7 @@ puts "Loading env from: #{env_path}"
 
 return if environment == Utility::EnvironmentFetcher.database_setup_env_string
 
-OpenapiFirst.register('openapi/openapi.yaml')
+OpenapiFirst.register('openapi/openapi.yml')
 
 Sequel::Model.plugin(ModelSchema::Plugin)
 DB = Sequel.connect(Utility::EnvironmentFetcher.postgres_url)

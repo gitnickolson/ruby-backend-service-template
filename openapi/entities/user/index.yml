@@ -1,0 +1,14 @@
+operationId: listUsers
+summary: List all users
+description: Retrieve a paginated list of all users in the system.
+
+tags:
+  - Users
+
+responses:
+  "200":
+    description: Success
+    content:
+      application/json:
+        schema:
+          $ref: ./entity.yml#/IndexUser
