@@ -38,7 +38,7 @@ RSpec.describe Repositories::UserRepository do
       expect(described_class.user_exists?(mail_address:)).to be(true)
     end
 
-    it 'returns false if a user with the passed email does not exist' do
+    it 'returns false if no user with the passed email exists' do
       expect(described_class.user_exists?(mail_address: 'test@test.com')).to be(false)
     end
   end
