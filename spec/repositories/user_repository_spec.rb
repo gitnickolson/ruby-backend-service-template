@@ -3,12 +3,12 @@
 require 'bcrypt'
 
 RSpec.describe Repositories::UserRepository do
-  describe '.create' do
-    let(:username) { 'nickolson' }
-    let(:mail_address) { 'nickolson@example.com' }
-    let(:password) { 'test_password' }
-    let(:user_data) { { username:, mail_address:, password: } }
+  let(:username) { 'nickolson' }
+  let(:mail_address) { 'nickolson@example.com' }
+  let(:password) { 'test_password' }
+  let(:user_data) { { username:, mail_address:, password: } }
 
+  describe '.create' do
     before do
       allow(Utility::PasswordEncrypter).to receive(:call).and_call_original
     end
@@ -26,6 +26,20 @@ RSpec.describe Repositories::UserRepository do
 
       expect(Utility::PasswordEncrypter).to have_received(:call).with(password:)
       expect(BCrypt::Password.new(Models::User.first.password_hash)).to eq("#{password}#{Utility::EnvironmentFetcher.pepper}")
+    end
+  end
+
+  describe '.user_exists?' do
+    before do
+      create(:user, username:, mail_address:, password_hash: password)
+    end
+
+    it 'returns true if a user with the passed email exists' do
+      expect(described_class.user_exists?(mail_address:)).to be(true)
+    end
+
+    it 'returns false if a user with the passed email does not exist' do
+      expect(described_class.user_exists?(mail_address: 'test@test.com')).to be(false)
     end
   end
 end
