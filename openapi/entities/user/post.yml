@@ -4,7 +4,7 @@ description: Create a user
 
 tags:
   - Users
-  
+
 requestBody:
   required: true
   content:
@@ -16,7 +16,7 @@ requestBody:
         properties:
           data:
             $ref: ./entity.yml#/PostUser
-            
+
 responses:
   "201":
     description: Created
@@ -43,7 +43,7 @@ responses:
                 mailAddress:
                   type: string
                   format: email
-                verified: 
+                verified:
                   type: boolean
                 createdAt:
                   type: string
@@ -54,5 +54,5 @@ responses:
     description: Unauthorized
   "409":
     description: Conflict
-
-
+  "422":
+    description: Unprocessable Content

@@ -51,20 +51,35 @@ RSpec.describe Repositories::UserRepository do
     end
   end
 
-  describe '.user_exists?' do
-    let(:username) { 'nickolson' }
+  describe '.mail_taken?' do
     let(:mail_address) { 'nickolson@example.com' }
 
     before do
-      create(:user, username:, mail_address:)
+      create(:user, username: 'foo', mail_address:)
     end
 
     it 'returns true if a user with the passed email exists' do
-      expect(described_class.user_exists?(mail_address:)).to be(true)
+      expect(described_class.mail_taken?(mail_address:)).to be(true)
     end
 
     it 'returns false if no user with the passed email exists' do
-      expect(described_class.user_exists?(mail_address: 'test@test.com')).to be(false)
+      expect(described_class.mail_taken?(mail_address: 'foo@bar.com')).to be(false)
+    end
+  end
+
+  describe '.username_taken?' do
+    let(:username) { 'nickolson' }
+
+    before do
+      create(:user, username:, mail_address: 'foo')
+    end
+
+    it 'returns true if a user with the passed username exists' do
+      expect(described_class.username_taken?(username:)).to be(true)
+    end
+
+    it 'returns false if no user with the passed username exists' do
+      expect(described_class.username_taken?(username: 'bar')).to be(false)
     end
   end
 end
