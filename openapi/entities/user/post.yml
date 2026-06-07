@@ -33,6 +33,7 @@ responses:
                 - id
                 - username
                 - mailAddress
+                - verified
                 - createdAt
               properties:
                 id:
@@ -42,6 +43,8 @@ responses:
                 mailAddress:
                   type: string
                   format: email
+                verified: 
+                  type: boolean
                 createdAt:
                   type: string
                   format: date-time

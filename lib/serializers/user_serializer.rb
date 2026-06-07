@@ -8,6 +8,7 @@ module Serializers
           id: user.id.to_s,
           username: user.username,
           mailAddress: user.mail_address,
+          verified: user.verified,
           createdAt: user.created_at.iso8601
         }
       end
@@ -18,6 +19,7 @@ module Serializers
             id: user.id.to_s,
             username: user.username,
             mailAddress: user.mail_address,
+            verified: user.verified,
             createdAt: user.created_at.iso8601
           }
         end

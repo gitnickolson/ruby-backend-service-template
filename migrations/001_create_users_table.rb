@@ -7,10 +7,12 @@ Sequel.migration do
       String :username, null: false
       String :mail_address, null: false
       String :password_hash, null: false
+      boolean :verified, null: false, default: false
       DateTime :created_at, null: false, default: Sequel::CURRENT_TIMESTAMP
     end
 
     alter_table(:users) do
+      add_index :username, name: :unique_usernames, unique: true
       add_index :mail_address, name: :unique_mail_addresses, unique: true
     end
   end
