@@ -30,7 +30,7 @@ module Web
 
         map('/api-docs') do
           run proc { |_env|
-            path = File.join(__dir__, '..', '..', 'openapi', 'openapi.yml')
+            path = File.join(__dir__, '..', '..', 'openapi', 'api_docs.yml')
             [200, { 'Content-Type' => 'application/yaml' }, [File.read(path)]]
           }
         end
