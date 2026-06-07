@@ -162,11 +162,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
-                },
-                "properties": {
-                  "error": {
-                    "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -177,11 +177,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
-                },
-                "properties": {
-                  "error": {
-                    "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -192,11 +192,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
-                },
-                "properties": {
-                  "error": {
-                    "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -207,11 +207,11 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
-                },
-                "properties": {
-                  "error": {
-                    "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
                   }
                 }
               }

@@ -54,33 +54,33 @@ responses:
       application/json:
         schema:
           type: object
-        properties:
-          error:
-            type: string
+          properties:
+            error:
+              type: string
   "401":
     description: Unauthorized
     content:
       application/json:
         schema:
           type: object
-        properties:
-          error:
-            type: string
+          properties:
+            error:
+              type: string
   "409":
     description: Conflict
     content:
       application/json:
         schema:
           type: object
-        properties:
-          error:
-            type: string
+          properties:
+            error:
+              type: string
   "422":
     description: Unprocessable Content
     content:
       application/json:
         schema:
           type: object
-        properties:
-          error:
-            type: string
+          properties:
+            error:
+              type: string
