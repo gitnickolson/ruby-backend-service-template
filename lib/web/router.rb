@@ -28,10 +28,19 @@ module Web
           end
         end
 
-        use OpenapiFirst::Middlewares::RequestValidation
-        use OpenapiFirst::Middlewares::ResponseValidation
+        map('/api-docs') do
+          run proc { |_env|
+            path = File.join(__dir__, '..', '..', 'openapi', 'openapi.yml')
+            [200, { 'Content-Type' => 'application/yaml' }, [File.read(path)]]
+          }
+        end
 
-        map('/users') { run Web::Controllers::UsersController }
+        map('/') do
+          use OpenapiFirst::Middlewares::RequestValidation
+          use OpenapiFirst::Middlewares::ResponseValidation
+
+          map('/users') { run Web::Controllers::UsersController }
+        end
       end
     end
   end
