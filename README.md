@@ -64,3 +64,11 @@ After starting, you can check if the service is up and running by calling the `/
 
 I'd suggest keeping the code clean by using serializer-, service- and repository-classes to encapsulate your functionality when adding new routes.
 This repository also makes use of the `factory_bot` gem. Make sure to use it when writing tests.
+
+## API Documentation
+Generate `api_docs.yml`:
+```
+ npx swagger-cli bundle openapi/openapi.yml --dereference -o openapi/api_docs.yml  
+```
+
+The resulting file can be used for frontend type generation and visual/interactive API documentation, for example. 
