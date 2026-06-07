@@ -4,8 +4,13 @@ module Web
   module Utility
     class ResponseBuilder
       class << self
-        def json_response(payload:, status: 200)
+        def success(payload:, status: 200)
           body = JSON.generate({ data: payload })
+          [status, body]
+        end
+
+        def error(message:, status:)
+          body = JSON.generate({ error: message })
           [status, body]
         end
       end

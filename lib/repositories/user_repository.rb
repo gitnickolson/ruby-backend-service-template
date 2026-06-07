@@ -15,8 +15,12 @@ module Repositories
                             password_hash:)
       end
 
-      def user_exists?(mail_address:)
+      def mail_taken?(mail_address:)
         Models::User.where(mail_address:).any?
+      end
+
+      def username_taken?(username:)
+        Models::User.where(username:).any?
       end
     end
   end

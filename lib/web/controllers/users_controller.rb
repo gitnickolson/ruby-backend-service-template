@@ -11,23 +11,35 @@ module Web
 
       post '/' do
         user_data = Serializers::UserSerializer.deserialize(payload:)
-        halt 400 unless Validation::UserDataValidator.valid?(user_data:)
-        halt 409 if Repositories::UserRepository.user_exists?(mail_address: user_data[:mail_address])
+
+        result = Validation::UserDataValidator.validate(user_data:)
+        halt(Utility::ResponseBuilder.error(message: result.value, status: 422)) if result.failure?
+
+        halt(Utility::ResponseBuilder.error(message: 'Username taken.', status: 409)) if username_taken?(user_data)
+        halt(Utility::ResponseBuilder.error(message: 'Mail address taken.', status: 409)) if mail_taken?(user_data)
 
         created_user = Repositories::UserRepository.create(user_data:)
         serialized_user = Serializers::UserSerializer.serialize(user: created_user)
 
-        Utility::ResponseBuilder.json_response(payload: serialized_user, status: 201)
+        Utility::ResponseBuilder.success(payload: serialized_user, status: 201)
       end
 
       get '/' do
         users = Repositories::UserRepository.all
         serialized_users = Serializers::UserSerializer.serialize_many(users:)
 
-        Utility::ResponseBuilder.json_response(payload: serialized_users, status: 200)
+        Utility::ResponseBuilder.success(payload: serialized_users, status: 200)
       end
 
       private
+
+      def username_taken?(user_data)
+        Repositories::UserRepository.username_taken?(username: user_data[:username])
+      end
+
+      def mail_taken?(user_data)
+        Repositories::UserRepository.mail_taken?(mail_address: user_data[:mail_address])
+      end
 
       def payload
         JSON.parse(request.body.string, { symbolize_names: true })[:data]
