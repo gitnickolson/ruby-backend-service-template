@@ -45,9 +45,21 @@ RSpec.describe Web::Controllers::UsersController do
                                                          id: user.id.to_s,
                                                          username:,
                                                          mailAddress: mail_address,
+                                                         verified: user.verified,
                                                          createdAt: user.created_at.iso8601
                                                        }
                                                      }))
+    end
+
+    it 'creates a user with unverified status' do
+      post('/users', body)
+
+      expect(last_response.status).to eq(201)
+
+      user = Models::User.first
+      expect(user).to have_attributes({
+                                        verified: false
+                                      })
     end
 
     context 'when user with same email already exists' do

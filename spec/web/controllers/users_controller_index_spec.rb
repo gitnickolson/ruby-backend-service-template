@@ -26,9 +26,11 @@ RSpec.describe Web::Controllers::UsersController do
       expect(last_response.status).to eq(200)
       expect(last_response.body).to eq(JSON.generate(data: [{ id: user.id.to_s, username:,
                                                               mailAddress: mail_address,
+                                                              verified: user.verified,
                                                               createdAt: user.created_at.iso8601 },
                                                             { id: other_user.id.to_s, username: other_username,
                                                               mailAddress: other_mail_address,
+                                                              verified: user.verified,
                                                               createdAt: other_user.created_at.iso8601 }]))
     end
   end

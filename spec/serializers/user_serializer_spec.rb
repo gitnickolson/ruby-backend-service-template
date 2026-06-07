@@ -11,6 +11,7 @@ RSpec.describe Serializers::UserSerializer do
                              id: user.id.to_s,
                              username: user.username,
                              mailAddress: user.mail_address,
+                             verified: user.verified,
                              createdAt: user.created_at.iso8601
                            })
     end
@@ -28,12 +29,14 @@ RSpec.describe Serializers::UserSerializer do
                              id: user.id.to_s,
                              username: user.username,
                              mailAddress: user.mail_address,
+                             verified: user.verified,
                              createdAt: user.created_at.iso8601
                            },
                             {
                               id: other_user.id.to_s,
                               username: other_user.username,
                               mailAddress: other_user.mail_address,
+                              verified: other_user.verified,
                               createdAt: other_user.created_at.iso8601
                             }])
     end
