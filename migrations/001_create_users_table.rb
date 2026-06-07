@@ -7,6 +7,7 @@ Sequel.migration do
       String :username, null: false
       String :mail_address, null: false
       String :password_hash, null: false
+      boolean :verified, null: false, default: false
       DateTime :created_at, null: false, default: Sequel::CURRENT_TIMESTAMP
     end
 

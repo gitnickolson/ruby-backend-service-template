@@ -18,7 +18,7 @@ RSpec.describe Serializers::UserSerializer do
 
   describe '.serialize_many' do
     let(:user) { create(:user) }
-    let(:other_user) { create(:user, mail_address: 'test@test.com') }
+    let(:other_user) { create(:user, username: 'bar', mail_address: 'test@test.com') }
     let(:users) { [user, other_user] }
 
     it 'serializes many users' do
