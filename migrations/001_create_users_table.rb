@@ -11,6 +11,7 @@ Sequel.migration do
     end
 
     alter_table(:users) do
+      add_index :username, name: :unique_usernames, unique: true
       add_index :mail_address, name: :unique_mail_addresses, unique: true
     end
   end
