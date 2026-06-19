@@ -66,9 +66,9 @@ I'd suggest keeping the code clean by using serializer-, service- and repository
 This repository also makes use of the `factory_bot` gem. Make sure to use it when writing tests.
 
 ## API Documentation
-Generate `api_docs.yml`:
+Generate `api_docs.yml` (requires `npm`):
 ```
- npx swagger-cli bundle openapi/openapi.yml --dereference -o openapi/api_docs.yml  
+npx swagger-cli bundle openapi/openapi.yml --dereference -o openapi/api_docs.yml  
 ```
 
 The resulting file can be used for frontend type generation and visual/interactive API documentation, for example. 
