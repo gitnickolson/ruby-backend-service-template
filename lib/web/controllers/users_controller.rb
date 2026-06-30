@@ -13,22 +13,22 @@ module Web
         user_data = Serializers::UserSerializer.deserialize(payload:)
 
         result = Validation::UserDataValidator.validate(user_data:)
-        halt(Utility::ResponseBuilder.error(message: result.value, status: 422)) if result.failure?
+        halt(ResponseBuilder.error(message: result.value, status: 422)) if result.failure?
 
-        halt(Utility::ResponseBuilder.error(message: 'Username taken.', status: 409)) if username_taken?(user_data)
-        halt(Utility::ResponseBuilder.error(message: 'Mail address taken.', status: 409)) if mail_taken?(user_data)
+        halt(ResponseBuilder.error(message: 'Username taken.', status: 409)) if username_taken?(user_data)
+        halt(ResponseBuilder.error(message: 'Mail address taken.', status: 409)) if mail_taken?(user_data)
 
         created_user = Repositories::UserRepository.create(user_data:)
         serialized_user = Serializers::UserSerializer.serialize(user: created_user)
 
-        Utility::ResponseBuilder.success(payload: serialized_user, status: 201)
+        ResponseBuilder.success(payload: serialized_user, status: 201)
       end
 
       get '/' do
         users = Repositories::UserRepository.all
         serialized_users = Serializers::UserSerializer.serialize_many(users:)
 
-        Utility::ResponseBuilder.success(payload: serialized_users, status: 200)
+        ResponseBuilder.success(payload: serialized_users, status: 200)
       end
 
       private

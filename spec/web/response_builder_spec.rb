@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Web::Utility::ResponseBuilder do
+RSpec.describe Web::ResponseBuilder do
   describe '.success' do
     let(:payload) { { foo: { bar: 'baz', zip: 'zap' } } }
     let(:status) { 200 }
